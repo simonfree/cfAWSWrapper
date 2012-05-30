@@ -4,12 +4,12 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 	
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId/>
-		<cfset this.secretAccesskey = arguments.secretAccessKey/>
-		<cfset this.endPoint = 'elasticloadbalancing.us-east-1.amazonaws.com'/>
-		<cfset this.requestMethod = 'no-header'/>
-		<cfset this.version = '2011-11-15'/>
-		<cfset this.protocol = 'https://'/>
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId/>
+		<cfset variables.secretAccesskey = arguments.secretAccessKey/>
+		<cfset variables.endPoint = 'elasticloadbalancing.us-east-1.amazonaws.com'/>
+		<cfset variables.requestMethod = 'no-header'/>
+		<cfset variables.version = '2011-11-15'/>
+		<cfset variables.protocol = 'https://'/>
 		<cfreturn this/>
 	</cffunction>
 	
@@ -24,11 +24,11 @@
 			<cfset body &= "&SecurityGroups.member." & i & "=" & trim(listgetat(arguments.SecurityGroups, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -62,11 +62,11 @@
 			<cfset body &= "&Subnets.member." & i & "=" & trim(listgetat(arguments.Subnets, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -115,11 +115,11 @@
 		<cfif len(trim(arguments.UnhealthyThreshold))>
 			<cfset body &= "&HealthCheck.UnhealthyThreshold=" & trim(arguments.UnhealthyThreshold)/>
 		</cfif>
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -146,11 +146,11 @@
 		<cfset var body = "Action=CreateAppCookieStickinessPolicy&CookieName=" & trim(arguments.CookieName) 
 		       & "&LoadBalancerName=" & trim(arguments.LoadBalancerName) & "&PolicyName=" & trim(arguments.PolicyName)/>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -177,11 +177,11 @@
 		<cfif len(trim(arguments.CookieExpirationPeriod))>
 			<cfset body &= "&CookieExpirationPeriod=" & trim(arguments.CookieExpirationPeriod)/>
 		</cfif>
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -238,11 +238,11 @@
 			<cfset body &= "&Subnets.member." & m & "=" & trim(listgetat(arguments.Subnets, m))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -286,11 +286,11 @@
 			</cfif>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -320,11 +320,11 @@
 			               & "&PolicyAttributes.member." & i & ".AttributeValue=" & trim(arguments.PolicyAttributes[i].AttributeValue)/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -346,11 +346,11 @@
 		<cfset var stResponse = createResponse()/>
 		<cfset var body = "Action=DeleteLoadBalancer&LoadBalancerName=" & trim(arguments.LoadBalancerName)/>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -376,11 +376,11 @@
 			<cfset body &= "&LoadBalancerPorts.member." & j & "=" & trim(listgetat(arguments.LoadBalancerPorts, j))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -403,11 +403,11 @@
 		<cfset var body = "Action=DeleteLoadBalancerPolicy&LoadBalancerName=" & trim(arguments.LoadBalancerName) 
 		       & "&PolicyName=" & trim(arguments.PolicyName)/>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -433,11 +433,11 @@
 			<cfset body &= "&Instances.member." & i & ".InstanceId=" & trim(listgetat(arguments.Instances, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -470,11 +470,11 @@
 			<cfset body &= "&Instances.member." & i & ".InstanceId=" & trim(listgetat(arguments.Instances, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -510,11 +510,11 @@
 			<cfset body &= "&PolicyNames.member." & i & "=" & trim(listgetat(arguments.PolicyNames, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -546,11 +546,11 @@
 			<cfset body &= "&PolicyTypeNames.member." & i & "=" & trim(listgetat(arguments.PolicyTypeNames, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -586,11 +586,11 @@
 		<cfif len(trim(arguments.Marker))>
 			<cfset body &= "&Marker=" & trim(arguments.Marker)/>
 		</cfif>
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -623,11 +623,11 @@
 			<cfset body &= "&Subnets.member." & i & "=" & trim(listgetat(arguments.Subnets, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -660,11 +660,11 @@
 			<cfset body &= "&AvailabilityZones.member." & i & "=" & trim(listgetat(arguments.AvailabilityZones, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -697,11 +697,11 @@
 			<cfset body &= "&AvailabilityZones.member." & i & "=" & trim(listgetat(arguments.AvailabilityZones, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -734,11 +734,11 @@
 			<cfset body &= "&Instances.member." & i & ".InstanceId=" & trim(listgetat(arguments.Instances, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -769,11 +769,11 @@
 		<cfset var body = "Action=SetLoadBalancerListenerSSLCertificate&LoadBalancerName=" & trim(arguments.LoadBalancerName) 
 		       & "&LoadBalancerPort=" & trim(arguments.LoadBalancerPort) & "&SSLCertificateId=" & trim(arguments.SSLCertificateId)/>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -801,11 +801,11 @@
 			<cfset body &= "&PolicyNames.member." & i & "=" & trim(listgetat(arguments.PolicyNames, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>
@@ -833,11 +833,11 @@
 			<cfset body &= "&PolicyNames.member." & i & "=" & trim(listgetat(arguments.PolicyNames, i))/>
 		</cfloop>
 	
-		<cfset var rawResult = makeRequestFull(endPoint=this.endPoint, 
-		                                       awsAccessKeyId=this.awsAccessKeyId,
-		                                       secretAccesskey=this.secretAccesskey,body=body, 
-		                                       requestMethod=this.requestMethod,version=this.version, 
-		                                       protocol=this.protocol)/>
+		<cfset var rawResult = makeRequestFull(endPoint=variables.endPoint, 
+		                                       awsAccessKeyId=variables.awsAccessKeyId,
+		                                       secretAccesskey=variables.secretAccesskey,body=body, 
+		                                       requestMethod=variables.requestMethod,version=variables.version, 
+		                                       protocol=variables.protocol)/>
 	
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent), 'Error')[1]/>

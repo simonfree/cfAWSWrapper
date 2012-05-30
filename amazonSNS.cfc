@@ -3,10 +3,10 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'sns.us-east-1.amazonaws.com' />
-		<cfset this.requestMethod = 'no-header' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'sns.us-east-1.amazonaws.com' />
+		<cfset variables.requestMethod = 'no-header' />
 		<cfreturn this />		
 	</cffunction>	
 	
@@ -15,11 +15,11 @@
 		<cfset var body = "Action=ListTopics">
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -47,11 +47,11 @@
 		<cfset var body = "Action=ListSubscriptions">
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -87,11 +87,11 @@
 		<cfset var body = 'Action=ListSubscriptionsByTopic&TopicArn=' & trim(arguments.TopicArn)>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -130,11 +130,11 @@
 		<cfset var body = 'Action=Subscribe' & '&Endpoint=' & trim(arguments.Endpoint) & '&Protocol=' & trim(arguments.protocol) & '&TopicArn=' & trim(arguments.topicArn)>
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -159,11 +159,11 @@
 		<cfset var body = 'Action=Unsubscribe&SubscriptionArn=' & trim(arguments.SubscriptionArn)  />
 		
 		<cfset var rawResult = makeRequest(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -192,11 +192,11 @@
 		</cfif>
 			
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -221,11 +221,11 @@
 		<cfset var body = 'Action=CreateTopic&Name=' & trim(arguments.name)>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -250,11 +250,11 @@
 		<cfset var body = 'Action=DeleteTopic&TopicArn=' & trim(arguments.TopicArn)>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -277,11 +277,11 @@
 		<cfset var body = 'Action=GetSubscriptionAttributes&SubscriptionArn=' & trim(arguments.SubscriptionArn)>
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -310,11 +310,11 @@
 		<cfset var body = 'Action=GetTopicAttributes&TopicArn=' & trim(arguments.TopicArn)>
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -378,11 +378,11 @@
 		</cfif>	
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -415,11 +415,11 @@
 		</cfif>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -458,11 +458,11 @@
 		<cfset body &= '&Action=AddPermission' />
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -487,11 +487,11 @@
 		<cfset var body = 'Action=SetTopicAttributes&TopicArn=' & trim(arguments.TopicArn) & '&AttributeName=' & trim(arguments.attributeName) & '&AttributeValue=' & trim(arguments.attributeValue)>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -515,11 +515,11 @@
 		<cfset var body = 'Action=RemovePermission&TopicArn=' & trim(arguments.TopicArn) & '&Label=' & trim(arguments.Label)>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod ) />
+									requestMethod=variables.requestMethod ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />

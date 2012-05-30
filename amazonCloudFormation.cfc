@@ -3,12 +3,12 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'cloudformation.us-east-1.amazonaws.com' />
-		<cfset this.requestMethod = 'no-header' />
-		<cfset this.version = '2010-05-15' />
-		<cfset this.protocol = 'https://' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'cloudformation.us-east-1.amazonaws.com' />
+		<cfset variables.requestMethod = 'no-header' />
+		<cfset variables.version = '2010-05-15' />
+		<cfset variables.protocol = 'https://' />
 		<cfreturn this />		
 	</cffunction>
 	
@@ -17,13 +17,13 @@
 		<cfset var body = "Action=DescribeStacks"/>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 			
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -69,13 +69,13 @@
 		<cfset var body = "Action=ListStacks"/>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -118,13 +118,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -166,13 +166,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -216,13 +216,13 @@
 		</cfif>		
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -264,13 +264,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -342,13 +342,13 @@
 		</cfloop>	
 					
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -393,13 +393,13 @@
 		</cfloop>	
 					
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -433,13 +433,13 @@
 		</cfif>	
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -477,13 +477,13 @@
 		<cfset var body = "Action=GetTemplate&StackName=" & trim(arguments.StackName)/>
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -522,13 +522,13 @@
 		</cfloop>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -553,13 +553,13 @@
 		<cfset var body = "Action=DeleteStack&StackName=" & trim(arguments.StackName)/>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />

@@ -3,10 +3,10 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'https://email.us-east-1.amazonaws.com' />
-		<cfset this.requestMethod = '' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'https://email.us-east-1.amazonaws.com' />
+		<cfset variables.requestMethod = '' />
 		<cfreturn this />		
 	</cffunction>	
 	
@@ -15,11 +15,11 @@
 		<cfset var body = "Action=ListVerifiedEmailAddresses" />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod) />
+									requestMethod=variables.requestMethod) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -42,19 +42,19 @@
 		<cfreturn stResponse />
 	</cffunction>
 	
-	<cffunction name="verifyEmailAddress" access="public" returntype="String" hint="Verifies an email address. This action causes a confirmation email message to be sent to the specified address.">
+	<cffunction name="verifyEmailAddress" access="public" returntype="String" hint="Verifies an email address. variables action causes a confirmation email message to be sent to the specified address.">
 		<cfargument name="emailAddress" type="string" required="true" hint="The email address to be verified.">
 		
 		<cfset var stResponse = createResponse() />
 		<cfset var body = "Action=VerifyEmailAddress&EmailAddress=" & trim(arguments.emailAddress) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version  ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version  ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -77,9 +77,9 @@
 		<cfset var body = "Action=DeleteVerifiedEmailAddress&EmailAddress=" & trim(arguments.emailAddress) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body ) />
 		
 		<cfif rawResult.statusCode neq 200>
@@ -101,9 +101,9 @@
 		<cfset var body = "Action=GetSendQuota" />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body ) />
 		
 		<cfif rawResult.statusCode neq 200>
@@ -130,9 +130,9 @@
 		<cfset var body = "Action=GetSendStatistics" />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body ) />
 									
 		<cfif rawResult.statusCode neq 200>
@@ -225,9 +225,9 @@
 		<cfset body &= "&Message.Subject.Data=#trim(arguments.subject)#&Source=#trim(arguments.from)#" />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body ) />
 		
 		<cfif rawResult.statusCode neq 200>
@@ -271,9 +271,9 @@
 		<cfset body &= "&RawMessage.Data=#trim(arguments.RawMessage)#" />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body ) />
 									
 		<cfif rawResult.statusCode neq 200>

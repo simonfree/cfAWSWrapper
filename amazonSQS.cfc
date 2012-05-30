@@ -3,11 +3,11 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'sqs.us-east-1.amazonaws.com' />
-		<cfset this.requestMethod = 'no-header' />
-		<cfset this.version = '2011-10-01' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'sqs.us-east-1.amazonaws.com' />
+		<cfset variables.requestMethod = 'no-header' />
+		<cfset variables.version = '2011-10-01' />
 		<cfreturn this />		
 	</cffunction>	
 	
@@ -18,12 +18,12 @@
 		<cfset var body = "Action=CreateQueue&QueueName=" & trim(arguments.QueueName) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -52,12 +52,12 @@
 		</cfif>
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -87,12 +87,12 @@
 		<cfset var body = "Action=GetQueueUrl&QueueName=" & trim(arguments.QueueName) />
 
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -130,13 +130,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -172,13 +172,13 @@
 		<cfset var body = "Action=SetQueueAttributes&Attribute.Name=" & trim(arguments.name) & '&Attribute.Value=' & trim(arguments.value) />
 			
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -206,13 +206,13 @@
 		</cfloop>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -248,13 +248,13 @@
 		</cfif>
 			
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -290,13 +290,13 @@
 		</cfloop>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -327,13 +327,13 @@
 		<cfset var body = "Action=DeleteMessage&ReceiptHandle=" & trim(arguments.ReceiptHandle) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -362,13 +362,13 @@
 			<cfset body &= "&DeleteMessageBatchRequestEntry." & i & ".Id=" & trim(arguments.messages[i].id) & "&DeleteMessageBatchRequestEntry." & i & ".ReceiptHandle=" & trim(arguments.messages[i].ReceiptHandle) />
 		</cfloop>	
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -393,13 +393,13 @@
 		<cfset var body = "Action=DeleteQueue" />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -424,13 +424,13 @@
 		<cfset var body = "Action=ChangeMessageVisibility&ReceiptHandle=" & trim(arguments.ReceiptHandle) & "&VisibilityTimeout=" & trim(arguments.VisibilityTimeout) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
+									requestMethod = variables.requestMethod,
+									version = variables.version,
 									skipEncryption='ReceiptHandle' ) />
 		
 		<cfif rawResult.statusCode neq 200>
@@ -461,13 +461,13 @@
 		</cfloop>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -498,13 +498,13 @@
 		</cfloop>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									uri = replacenocase(arguments.Queue,'http://' & this.endPoint,'','all'),
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									uri = replacenocase(arguments.Queue,'http://' & variables.endPoint,'','all'),
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />

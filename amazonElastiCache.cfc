@@ -3,12 +3,12 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'elasticache.us-east-1.amazonaws.com' />
-		<cfset this.requestMethod = 'no-header' />
-		<cfset this.version = '2012-03-09' />
-		<cfset this.protocol = 'https://' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'elasticache.us-east-1.amazonaws.com' />
+		<cfset variables.requestMethod = 'no-header' />
+		<cfset variables.version = '2012-03-09' />
+		<cfset variables.protocol = 'https://' />
 		<cfreturn this />		
 	</cffunction>
 	
@@ -53,13 +53,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -110,13 +110,13 @@
 		<cfset var aClusters=[] />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -161,13 +161,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -212,13 +212,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -263,13 +263,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -310,13 +310,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -399,13 +399,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -470,13 +470,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -551,13 +551,13 @@
 		
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -584,13 +584,13 @@
 		<cfset var body = "Action=CreateCacheSecurityGroup&CacheSecurityGroupName=" & trim(arguments.CacheSecurityGroupName) & "&Description=" & trim(arguments.Description) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -618,13 +618,13 @@
 		<cfset var body = "Action=CreateCacheParameterGroup&CacheParameterGroupName=" & trim(arguments.CacheParameterGroupName) & "&Description=" & trim(arguments.Description) & "&CacheParameterGroupFamily=" & trim(arguments.CacheParameterGroupFamily) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -655,13 +655,13 @@
 		</cfloop>
 			
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -699,13 +699,13 @@
 		<cfset body &= "&ResetAllParameters=" & trim(arguments.ResetAllParameters) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -780,13 +780,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -817,13 +817,13 @@
 		</cfloop>
 			
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -849,13 +849,13 @@
 		<cfset var body = "Action=DeleteCacheSecurityGroup&CacheSecurityGroupName=" & trim(arguments.CacheSecurityGroupName) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 		
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -878,13 +878,13 @@
 		<cfset var body = "Action=DeleteCacheParameterGroup&CacheParameterGroupName=" & trim(arguments.CacheParameterGroupName) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -907,13 +907,13 @@
 		<cfset var body = "Action=DeleteCacheCluster&CacheClusterId=" & trim(arguments.CacheClusterId) />
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -941,13 +941,13 @@
 		<cfset var body = "Action=AuthorizeCacheSecurityGroupIngress&CacheSecurityGroupName=" & trim(arguments.CacheSecurityGroupName) & "&EC2SecurityGroupName=" & trim(arguments.EC2SecurityGroupName) &  "&EC2SecurityGroupOwnerId=" & trim(arguments.EC2SecurityGroupOwnerId)/>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -975,13 +975,13 @@
 		<cfset var body = "Action=RevokeCacheSecurityGroupIngress&CacheSecurityGroupName=" & trim(arguments.CacheSecurityGroupName) & "&EC2SecurityGroupName=" & trim(arguments.EC2SecurityGroupName) &  "&EC2SecurityGroupOwnerId=" & trim(arguments.EC2SecurityGroupOwnerId)/>
 		
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 									
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />
@@ -1017,13 +1017,13 @@
 		</cfif>	
 		
 		<cfset var rawResult = makeRequest(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod = this.requestMethod,
-									version = this.version,
-									protocol = this.protocol ) />
+									requestMethod = variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol ) />
 
 		<cfif rawResult.statusCode neq 200>
 			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />

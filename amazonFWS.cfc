@@ -3,12 +3,12 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'fba-inbound.amazonaws.com' />
-		<cfset this.requestMethod = 'no-header' />
-		<cfset this.version = '2007-05-10' />
-		<cfset this.protocol = 'https://' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'fba-inbound.amazonaws.com' />
+		<cfset variables.requestMethod = 'no-header' />
+		<cfset variables.version = '2007-05-10' />
+		<cfset variables.protocol = 'https://' />
 		<cfreturn this />		
 	</cffunction>
 	
@@ -20,13 +20,13 @@
     		<cfset var body = "Action=ListAllFulfillmentItems&IncludeInactive=" & trim(arguments.IncludeInactive) & "&MaxCount=" & trim(arguments.MaxCount)/>    
     		    
     		<cfset var rawResult = makeRequestFull(    
-    							endPoint = this.endPoint,    
-    							awsAccessKeyId = this.awsAccessKeyId,     
-    							secretAccesskey = this.secretAccesskey,     
+    							endPoint = variables.endPoint,    
+    							awsAccessKeyId = variables.awsAccessKeyId,     
+    							secretAccesskey = variables.secretAccesskey,     
     							body=body,    
-    							requestMethod = this.requestMethod,    
-    							version = this.version,    
-    							protocol = this.protocol ) />    
+    							requestMethod = variables.requestMethod,    
+    							version = variables.version,    
+    							protocol = variables.protocol ) />    
     								    
     		<cfif rawResult.statusCode neq 200>    
     			<cfset error = getResultNodes(xmlParse(rawResult.fileContent),'Error')[1] />    

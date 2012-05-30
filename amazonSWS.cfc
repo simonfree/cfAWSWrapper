@@ -3,25 +3,25 @@
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
 				
-		<cfset this.awsAccessKeyId = arguments.awsAccessKeyId />
-		<cfset this.secretAccesskey = arguments.secretAccessKey />
-		<cfset this.endPoint = 'https://swf.us-east-1.amazonaws.com' />
-		<cfset this.requestMethod = '' />
-		<cfset this.version = '2012-01-25' />
-		<cfset this.protocol = 'https://' />
+		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
+		<cfset variables.secretAccesskey = arguments.secretAccessKey />
+		<cfset variables.endPoint = 'https://swf.us-east-1.amazonaws.com' />
+		<cfset variables.requestMethod = '' />
+		<cfset variables.version = '2012-01-25' />
+		<cfset variables.protocol = 'https://' />
 		<cfreturn this />		
 	</cffunction>
 	
 	<cffunction name="ListDomains" access="public" returntype="Array" >
 		<cfset var body = "Action=ListDomains" />
 		<cfset var rawResult = makeRequestFull(
-									endPoint = this.endPoint,
-									awsAccessKeyId = this.awsAccessKeyId, 
-									secretAccesskey = this.secretAccesskey, 
+									endPoint = variables.endPoint,
+									awsAccessKeyId = variables.awsAccessKeyId, 
+									secretAccesskey = variables.secretAccesskey, 
 									body=body,
-									requestMethod=this.requestMethod,
-									version = this.version,
-									protocol = this.protocol) />
+									requestMethod=variables.requestMethod,
+									version = variables.version,
+									protocol = variables.protocol) />
 									
 		<cfdump var="#rawResult#" /><cfabort>							
 		<cfset rawResult = getResultNodes(xmlParse(rawResult),'member') />
@@ -42,13 +42,13 @@
     		<cfset var body = "Action=ListActivityTypes&domain=" & trim(arguments.domain) & "&registrationStatus=" & trim(arguments.registrationStatus)/>    
     		    
     		<cfset var rawResult = makeRequestFull(    
-    							endPoint = this.endPoint,    
-    							awsAccessKeyId = this.awsAccessKeyId,     
-    							secretAccesskey = this.secretAccesskey,     
+    							endPoint = variables.endPoint,    
+    							awsAccessKeyId = variables.awsAccessKeyId,     
+    							secretAccesskey = variables.secretAccesskey,     
     							body=body,    
-    							requestMethod = this.requestMethod,    
-    							version = this.version,    
-    							protocol = this.protocol ) />    
+    							requestMethod = variables.requestMethod,    
+    							version = variables.version,    
+    							protocol = variables.protocol ) />    
     								    
     		<cfif rawResult.statusCode neq 200>    
 				<cfdump var="#rawResult#" /><cfabort>
