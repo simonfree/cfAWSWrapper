@@ -115,7 +115,7 @@
 		<cfset var response = {
 					AccessKeyId=getValue(arguments.stXML,'AccessKeyId'),
 					Expiration=getValue(arguments.stXML,'Expiration'),
-					SecretAccessKey=getValue(arguments.stXML,'Expiration'),
+					SecretAccessKey=getValue(arguments.stXML,'SecretAccessKey'),
 					SessionToken=getValue(arguments.stXML,'SessionToken')
 				} />	    
 		
