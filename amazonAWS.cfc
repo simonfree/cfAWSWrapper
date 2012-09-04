@@ -4,9 +4,8 @@
 		<cfargument name="date" required="false" default="#now()#" >
 		<cfargument name="iso" required="false" default="false" >
 		<cfset var result = '' />
-		<cfset tz = getTimeZoneInfo() />
-		<cfset dt = now() />
-		<cfset GDT=dateAdd('s',TZ.utcTotalOffset,DT) />
+		<cfset var tz = getTimeZoneInfo() />
+		<cfset var GDT=dateAdd('s',TZ.utcTotalOffset,arguments.date) />
 		<cfif arguments.iso>
 			<cfset result = DateFormat(GDT,'yyyy-mm-dd') & 'T' & TimeFormat(GDT,'HH:mm:ss')  & 'Z' />
 		<cfelse>	
