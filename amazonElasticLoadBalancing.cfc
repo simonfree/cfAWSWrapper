@@ -3,10 +3,11 @@
 	<cffunction name="init" access="public" returntype="amazonElasticLoadBalancing">
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
+		<cfargument name="endPoint" type="string" required="true" default="elasticloadbalancing.us-east-1.amazonaws.com"/>
 	
 		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId/>
 		<cfset variables.secretAccesskey = arguments.secretAccessKey/>
-		<cfset variables.endPoint = 'elasticloadbalancing.us-east-1.amazonaws.com'/>
+		<cfset variables.endPoint = arguments.endPoint />
 		<cfset variables.requestMethod = 'no-header'/>
 		<cfset variables.version = '2011-11-15'/>
 		<cfset variables.protocol = 'https://'/>

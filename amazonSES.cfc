@@ -2,10 +2,12 @@
 	<cffunction name="init" access="public" returntype="amazonSES" >
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
+		<cfargument name="endPoint" type="string" required="true" default="sns.us-east-1.amazonaws.com"/>
 				
 		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
 		<cfset variables.secretAccesskey = arguments.secretAccessKey />
-		<cfset variables.endPoint = 'https://email.us-east-1.amazonaws.com' />
+		<cfset variables.endPoint = arguments.endPoint />
+		
 		<cfset variables.requestMethod = '' />
 		<cfreturn this />		
 	</cffunction>	

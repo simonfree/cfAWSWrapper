@@ -2,10 +2,11 @@
 	<cffunction name="init" access="public" returntype="amazonSimpleDB" >
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
+		<cfargument name="endPoint" type="string" required="true" default="sdb.amazonaws.com"/>
 				
 		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
 		<cfset variables.secretAccesskey = arguments.secretAccessKey />
-		<cfset variables.endPoint = 'sdb.amazonaws.com' />
+		<cfset variables.endPoint = arguments.endPoint />
 		<cfset variables.requestMethod = 'no-header' />
 		<cfset variables.version = '2009-04-15' />
 		<cfreturn this />		

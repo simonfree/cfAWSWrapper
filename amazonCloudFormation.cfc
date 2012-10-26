@@ -2,10 +2,11 @@
 	<cffunction name="init" access="public" returntype="amazonCloudFormation" >
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
+		<cfargument name="endPoint" type="string" required="true" default="cloudformation.us-east-1.amazonaws.com"/>
 				
 		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
 		<cfset variables.secretAccesskey = arguments.secretAccessKey />
-		<cfset variables.endPoint = 'cloudformation.us-east-1.amazonaws.com' />
+		<cfset variables.endPoint = arguments.endPoint />
 		<cfset variables.requestMethod = 'no-header' />
 		<cfset variables.version = '2010-05-15' />
 		<cfset variables.protocol = 'https://' />

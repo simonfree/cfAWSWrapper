@@ -2,10 +2,11 @@
 	<cffunction name="init" access="public" returntype="amazonAutoScaling" >
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
+		<cfargument name="endPoint" type="string" required="true" default="autoscaling.us-east-1.amazonaws.com"/>
 				
 		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
 		<cfset variables.secretAccesskey = arguments.secretAccessKey />
-		<cfset variables.endPoint = 'autoscaling.us-east-1.amazonaws.com' />
+		<cfset variables.endPoint = arguments.endPoint />
 		<cfset variables.requestMethod = 'no-header' />
 		<cfset variables.version = '2011-01-01' />
 		<cfset variables.protocol = 'https://' />
