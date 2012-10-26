@@ -2,10 +2,11 @@
 	<cffunction name="init" access="public" returntype="amazonSQS" >
 		<cfargument name="awsAccessKeyId" type="string" required="true"/>
 		<cfargument name="secretAccessKey" type="string" required="true"/>
+		<cfargument name="endPoint" type="string" required="true" default="sqs.us-east-1.amazonaws.com"/>
 				
 		<cfset variables.awsAccessKeyId = arguments.awsAccessKeyId />
 		<cfset variables.secretAccesskey = arguments.secretAccessKey />
-		<cfset variables.endPoint = 'sqs.us-east-1.amazonaws.com' />
+		<cfset variables.endPoint = arguments.endPoint />
 		<cfset variables.requestMethod = 'no-header' />
 		<cfset variables.version = '2011-10-01' />
 		<cfreturn this />		
@@ -112,10 +113,9 @@
 	
 	<cffunction name="ReceiveMessage" access="public" returntype="Struct" >
 		<cfargument name="Queue" type="string" required="true" >
-		<cfargument name="MaxNumberOfMessages" type="string" required="false" default="" >
-		<cfargument name="VisibilityTimeout" type="string" required="false" default="" >
+		<cfargument name="MaxNumberOfMessages" type="string" required="false" default="10" >
+		<cfargument name="VisibilityTimeout" type="string" required="false" default="30" >
 		<cfargument name="AttributeName" type="string" required="false" default="" hint="Valid values: All | SenderId | SentTimestamp | ApproximateReceiveCount | ApproximateFirstReceiveTimestamp" >
-		
 		<cfset var stResponse = createResponse() />
 		<cfset var body = "Action=ReceiveMessage" />
 		
