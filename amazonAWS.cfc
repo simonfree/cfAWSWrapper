@@ -58,16 +58,15 @@
 		<cfset var del = '&' />
 		<cfset var keys = '' />
 		
-		
 		<cfloop list="#arguments.oldOrder#" index="item" delimiters="&" >
 			<cfif format>
-				<cfif listfindnocase(arguments.skipEncryption,listgetat(item,1,'='))>
-					<cfset stTemp[listgetat(item,1,'=')] = urlEncodeSpecial(listgetat(item,2,'=')) />
+				<cfif listfindnocase(arguments.skipEncryption,listfirst(item,'='))>
+					<cfset stTemp[listfirst(item,'=')] = urlEncodeSpecial(listrest(item,'=')) />
 				<cfelse>
-					<cfset stTemp[listgetat(item,1,'=')] = urlEncode(listgetat(item,2,'=')) />
+					<cfset stTemp[listfirst(item,'=')] = urlEncode(listrest(item,'=')) />
 				</cfif>
 			<cfelse>
-				<cfset stTemp[listgetat(item,1,'=')] = listgetat(item,2,'=') />
+				<cfset stTemp[listfirst(item,'=')] = listrest(item,'=') />
 			</cfif>	
 		</cfloop>
 		
@@ -97,8 +96,8 @@
 		<cfset var result = '' />
 		<cfset var formattedTime = '' />
 		<cfset var signature = '' />
+		
 		<cfif arguments.requestMethod eq 'no-header'>
-			
 			<cfset formattedTime = createFormattedTime(iso=true) />
 			<cfset signatureBody = 'GET#chr(10)##arguments.endPoint##chr(10)##arguments.uri##chr(10)#AWSAccessKeyId=#arguments.awsAccessKeyId#' />
 			<cfset signatureBodySub = "&#arguments.body#&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=#formattedTime#" />			
@@ -111,7 +110,7 @@
 			
 			<cfhttp method="GET" url="#arguments.protocol##replacenocase(arguments.endPoint,arguments.protocol,'','ALL')##arguments.uri#" charset="UTF-8" result="result">
 				<cfloop list="#signatureParams#" index="item" delimiters="&" >
-					<cfhttpparam type="url" name="#listgetat(item,1,'=')#" value="#listgetat(item,2,'=')#" >
+					<cfhttpparam type="url" name="#listfirst(item,'=')#" value="#listrest(item,'=')#" >
 				</cfloop>
 				<cfhttpparam type="url" name="Signature" value="#trim(Signature)#" >
 			</cfhttp>
@@ -143,8 +142,8 @@
 		<cfset var result = '' />
 		<cfset var formattedTime = '' />
 		<cfset var signature = '' />
+		
 		<cfif arguments.requestMethod eq 'no-header'>
-			
 			<cfset formattedTime = createFormattedTime(iso=true) />
 			<cfset signatureBody = 'GET#chr(10)##arguments.endPoint##chr(10)##arguments.uri##chr(10)#AWSAccessKeyId=#arguments.awsAccessKeyId#' />
 			<cfset signatureBodySub = "&#arguments.body#&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=#formattedTime#" />			
@@ -157,7 +156,7 @@
 			
 			<cfhttp method="GET" url="#arguments.protocol##replacenocase(arguments.endPoint,arguments.protocol,'','ALL')##arguments.uri#" charset="UTF-8" result="result">
 				<cfloop list="#signatureParams#" index="item" delimiters="&" >
-					<cfhttpparam type="url" name="#listgetat(item,1,'=')#" value="#listgetat(item,2,'=')#" >
+					<cfhttpparam type="url" name="#listfirst(item,'=')#" value="#listrest(item,'=')#" >
 				</cfloop>
 				<cfhttpparam type="url" name="Signature" value="#trim(Signature)#" >
 			</cfhttp>
